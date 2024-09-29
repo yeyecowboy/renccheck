@@ -76,6 +76,7 @@ task.defer(function()
 	repeat task.wait() until running == 0
 
 	local rate = math.round(passes / (passes + fails) * 100)
+	getgenv().unc = rate
 	local outOf = passes .. " out of " .. (passes + fails)
 
 	print("\n")
@@ -84,7 +85,6 @@ task.defer(function()
 	print("✅ Tested with a " .. rate .. "% success rate (" .. outOf .. ")")
 	print("⛔ " .. fails .. " tests failed")
 	print("⚠️ " .. undefined .. " globals are missing aliases")
-    getgenv().unc = rate
 	local customprint = customprint or function(str: string, ...)
         print(str)
     end
